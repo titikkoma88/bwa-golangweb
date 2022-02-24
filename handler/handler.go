@@ -134,7 +134,26 @@ func Process(w http.ResponseWriter, r *http.Request) {
 		}
 
 		name := r.Form.Get("name")
-		w.Write([]byte(name))
+		message := r.Form.Get("message")
+
+		data := map[string] interface{} {
+			"name": name,
+			"message": message,
+		}
+		
+		tmpl, err := template.ParseFiles(path.Join("views", "result.html"), path.Join("views", "layout.html"))
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Error is happening, keep calm", http.StatusInternalServerError)
+			return
+		}
+
+		err = tmpl.Execute(w, data)
+		if err != nil {
+			log.Println(err)
+			http.Error(w, "Error is happening, keep calm", http.StatusInternalServerError)
+			return
+		}
 
 		return
 	}
