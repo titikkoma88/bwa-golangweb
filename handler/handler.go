@@ -22,7 +22,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		//http.Error(w, err.Error(), http.StatusInternalServerError)
 		http.Error(w, "Error is happening, keep calm", http.StatusInternalServerError)
-		
+
 		return
 	}
 
@@ -31,11 +31,17 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	// 	"content": "I'm Learning Golang Web with Panji Hadjarati",
 	// }
 
-	data := entity.Product{
-		ID: 1,
-		Name: "Macbook Pro M1 2021",
-		Price: 48000000,
-		Stock: 3,
+	// data := entity.Product{
+	// 	ID:    1,
+	// 	Name:  "Macbook Pro M1 2021",
+	// 	Price: 48000000,
+	// 	Stock: 3,
+	// }
+
+	data := []entity.Product{
+		{ID: 1, Name: "Mobilio", Price: 220000000, Stock: 5},
+		{ID: 2, Name: "Xpander", Price: 300000000, Stock: 4},
+		{ID: 3, Name: "Pajero Sport", Price: 1000000000, Stock: 3},
 	}
 
 	err = tmpl.Execute(w, data)
@@ -43,7 +49,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		//http.Error(w, err.Error(), http.StatusInternalServerError)
 		http.Error(w, "Error is happening, keep calm", http.StatusInternalServerError)
-		
+
 		return
 	}
 }
@@ -76,9 +82,8 @@ func ProductHandler(w http.ResponseWriter, r *http.Request) {
 	err = tmpl.Execute(w, data)
 	if err != nil {
 		log.Println(err)
-		http.Error(w, "Error is happening, keep calm", http.StatusInternalServerError)		
+		http.Error(w, "Error is happening, keep calm", http.StatusInternalServerError)
 		return
 	}
-
 
 }
