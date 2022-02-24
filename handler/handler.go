@@ -85,5 +85,17 @@ func ProductHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error is happening, keep calm", http.StatusInternalServerError)
 		return
 	}
+}
 
+func PostGet(w http.ResponseWriter, r *http.Request) {
+	method := r.Method
+
+	switch method {
+	case "GET":
+			w.Write([]byte("Ini adalah GET"))
+	case "POST":
+			w.Write([]byte("Ini adalah POST"))
+	default:
+		http.Error(w, "Error is happening, keep calm", http.StatusBadRequest)
+	}
 }
