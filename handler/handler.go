@@ -25,7 +25,12 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = tmpl.Execute(w, nil)
+	data := map[string]interface{}{
+		"title": "I'm Learning Golang Web",
+		"content": "I'm Learning Golang Web with Panji Hadjarati",
+	}
+
+	err = tmpl.Execute(w, data)
 	if err != nil {
 		log.Println(err)
 		//http.Error(w, err.Error(), http.StatusInternalServerError)
