@@ -2,6 +2,7 @@ package handler
 
 import (
 	//"fmt"
+	"bwa-golangweb/entity"
 	"html/template"
 	"log"
 	"net/http"
@@ -25,9 +26,16 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	data := map[string]interface{}{
-		"title": "I'm Learning Golang Web",
-		"content": "I'm Learning Golang Web with Panji Hadjarati",
+	// data := map[string]interface{}{
+	// 	"title": "I'm Learning Golang Web",
+	// 	"content": "I'm Learning Golang Web with Panji Hadjarati",
+	// }
+
+	data := entity.Product{
+		ID: 1,
+		Name: "Macbook Pro M1 2021",
+		Price: 48000000,
+		Stock: 3,
 	}
 
 	err = tmpl.Execute(w, data)
