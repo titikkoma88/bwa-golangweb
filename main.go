@@ -8,8 +8,16 @@ import (
 func main() {
 	mux := http.NewServeMux()
 
+	aboutHandler := func (w http.ResponseWriter, r *http.Request)  {
+		w.Write([]byte("About Page"))
+	}
+
 	mux.HandleFunc("/", homeHandler)
 	mux.HandleFunc("/hello", helloHandler)
+	mux.HandleFunc("/about", aboutHandler)
+	mux.HandleFunc("/profile", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("Profile Page"))
+	})
 
 	log.Println("Starting web on port 8080")
 
